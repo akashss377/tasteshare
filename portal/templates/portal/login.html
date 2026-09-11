@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Administrator Login</title>
+
+    {% load static %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'portal/vendor/bootstrap/css/bootstrap.min.css' %}"
+    >
+
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+
+        <div class="col-md-5">
+
+            <div class="card">
+
+                <div class="card-header bg-dark text-white">
+
+                    Administrator Login
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="form-group">
+
+                            <label>
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                name="name"
+                                class="form-control"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>
+                                Password
+                            </label>
+
+                            <input
+                                type="password"
+                                name="password"
+                                class="form-control"
+                            >
+
+                        </div>
+
+                        <button
+                            class="btn btn-primary btn-block"
+                        >
+
+                            Login
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

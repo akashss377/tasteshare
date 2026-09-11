@@ -1,0 +1,88 @@
+{% extends "portal/base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+    <h3>
+        Recipe Management
+    </h3>
+
+</div>
+
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+
+        <tr>
+
+            <th>Recipe</th>
+            <th>Creator</th>
+            <th>Views</th>
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for recipe in recipes %}
+
+        <tr>
+
+            <td>
+                {{ recipe.title }}
+            </td>
+
+            <td>
+                {{ recipe.user.email }}
+            </td>
+
+            <td>
+                {{ recipe.view_count }}
+            </td>
+
+           <td>
+
+    <a
+        href="{% url 'admin_recipe_detail' recipe.id %}"
+        class="btn btn-sm btn-primary"
+    >
+
+        View
+
+    </a>
+
+</td>
+
+        </tr>
+
+        {% empty %}
+
+
+<tr>
+
+    <td
+        colspan="4"
+        class="text-center"
+    >
+
+        <div class="alert alert-info mb-0">
+
+            No recipes have been uploaded yet.
+
+        </div>
+
+    </td>
+
+</tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

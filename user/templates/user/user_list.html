@@ -1,0 +1,59 @@
+{% extends "portal/base.html" %}
+
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h3>User Management</h3>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.get_full_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+                {% if user.is_active %}
+                    Active
+                {% else %}
+                    Blocked
+                {% endif %}
+            </td>
+            <td>
+                <a href="{% url 'user_details' user.id %}" class="btn btn-sm btn-info">View</a>
+                {% if user.is_active %}
+                    <a href="{% url 'block_user' user.id %}" class="btn btn-sm btn-danger">Block</a>
+                {% else %}
+                    <a href="{% url 'unblock_user' user.id %}" class="btn btn-sm btn-success">Unblock</a>
+                {% endif %}
+            </td>
+        </tr>
+       {% empty %}
+
+<tr>
+
+    <td
+        colspan="4"
+        class="text-center"
+    >
+
+        <div class="alert alert-info mb-0">
+
+            No users have registered yet.
+
+        </div>
+
+    </td>
+
+</tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

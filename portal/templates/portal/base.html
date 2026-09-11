@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Recipe Sharing Platform</title>
+
+    {% load static %}
+
+    <link
+        rel="stylesheet"
+        href="{% static 'portal/vendor/bootstrap/css/bootstrap.min.css' %}"
+    >
+
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+
+    <a
+        class="navbar-brand"
+        href="#"
+    >
+
+        Recipe Sharing Platform
+
+    </a>
+
+    <span class="navbar-text text-white">
+
+        
+
+    </span>
+
+</nav>
+
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-md-2">
+
+            <div class="list-group rounded-0">
+
+  <a
+    href="{% url 'home' %}"
+    class="list-group-item
+        list-group-item-action
+        {% if request.resolver_match.url_name == 'home' %}
+            active
+        {% endif %}"
+>
+
+    Dashboard
+
+</a>
+
+<a
+    href="{% url 'admin_recipe_list' %}"
+    class="list-group-item
+        list-group-item-action
+        {% if request.resolver_match.url_name == 'recipe_list' or request.resolver_match.url_name == 'recipe_detail' %}
+            active
+        {% endif %}"
+>
+
+    Recipes
+
+</a>
+
+<a
+    href="{% url 'user_list' %}"
+    class="list-group-item
+        list-group-item-action
+        {% if request.resolver_match.url_name == 'user_list' or request.resolver_match.url_name == 'user_details' %}
+            active
+        {% endif %}"
+>
+
+    Users
+
+</a>
+ <a
+    href="{% url 'most_viewed_recipes' %}"
+    class="list-group-item
+        list-group-item-action
+        {% if request.resolver_match.url_name == 'most_viewed_recipes' %}
+            active
+        {% endif %}"
+>
+
+    Reports
+
+</a>
+
+    {% if user.is_authenticated %}
+
+            <a href="{% url 'admin_logout' %}" class="list-group-item list-group-item-action">
+                Logout
+            </a>
+
+        {% else %}
+
+            <a href="{% url 'admin_login' %}" class="list-group-item list-group-item-action">
+                Login
+            </a>
+
+        {% endif %}
+
+</div>
+
+        </div>
+
+        <div class="col-md-10">
+
+            <div class="col-md-10 p-4">
+                {% if messages %}
+
+    {% for message in messages %}
+
+        <div class="alert alert-success">
+
+            {{ message }}
+
+        </div>
+
+    {% endfor %}
+
+{% endif %}
+
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endif %}
+
+</body>
+
+</html>

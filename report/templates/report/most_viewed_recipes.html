@@ -1,0 +1,71 @@
+{% extends "portal/base.html" %}
+
+{% block content %}
+
+<h3 class="mb-4">
+
+    Most Viewed Recipes
+
+</h3>
+
+
+<table class="table table-bordered table-hover">
+
+    <thead>
+
+        <tr>
+
+            <th>Recipe</th>
+            <th>Creator</th>
+            <th>Views</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for recipe in recipes %}
+
+        <tr>
+
+            <td>
+                {{ recipe.title }}
+            </td>
+
+            <td>
+                {{ recipe.user.email }}
+            </td>
+
+            <td>
+                {{ recipe.view_count }}
+            </td>
+
+        </tr>
+
+     {% empty %}
+
+<tr>
+
+    <td
+        colspan="3"
+        class="text-center"
+    >
+
+        <div class="alert alert-info mb-0">
+
+            No recipe view data is available yet.
+
+        </div>
+
+    </td>
+
+</tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}
